@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+   <meta charset="UTF-8" />
+   <title>Day's citation</title>
+   <style></style>
+</head>
+
+<body>
+   <h4>Day's citation</h4>
+   <div id="citation"></div>
+
+   <script>
+      fetch("http://quotes.rest/qod.json")
+         .then((response) => response.json())
+         .then((data) => {
+            document.getElementById("citation").innerHTML =
+               data.contents.quotes[0].quote;
+         })
+         .catch((error) => alert(error));
+   </script>
+</body>
+
+</html>

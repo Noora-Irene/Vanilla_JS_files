@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+   <meta charset="UTF-8" />
+   <title>Karkausvuosi</title>
+   <style>
+      label {
+         display: block;
+         width: 120px;
+         float: left;
+      }
+   </style>
+</head>
+
+<body>
+   <h3>Tarkista onko vuosi karkausvuosi</h3>
+   <label>Anna vuosiluku</label>
+   <input type="text" id="year" size="8" />
+   <br><br>
+   <input type="button" value="Laske" onclick="count()" />
+   <br><br>
+   <span id="answer"></span>
+
+   <script>
+      function count() {
+         let year = document.getElementById("year").value;
+         let result = "";
+
+         if ((year % 4 == 0 && year % 100 != 0) || year % 400 == 0) {
+            result = "Vuosi " + year + " on karkausvuosi.";
+         } else {
+            result = "Vuosi " + year + " ei ole karkausvuosi.";
+         }
+         document.getElementById("answer").innerHTML = result;
+      }
+   </script>
+</body>
+
+</html>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+   <meta charset="UTF-8" />
+   <title>Fuel costs</title>
+   <style>
+      label {
+         display: block;
+         width: 150px;
+         float: left;
+      }
+   </style>
+</head>
+
+<body>
+   <label>Ajetut kilometrit:</label>
+   <input type="text" id="km" size="4" />
+   <br><br>
+   <label>Kulutus / 100 km:</label>
+   <input type="text" id="mileage" size="4" />
+   <br><br>
+   <label>Litrahinta:</label>
+   <input type="text" id="litrePrice" size="4" />
+   <br><br>
+   <label>Henkilömäärä:</label>
+   <input type="text" id="persons" size="4" />
+   <br><br>
+   <input type="button" value="Laske" onclick="count()" />
+   <br><br>
+
+   <div id="answer"></div>
+
+   <script>
+      function count() {
+         var km = document.getElementById("km").value;
+         var mileage = document.getElementById("mileage").value;
+         var litrePrice = document.getElementById("litrePrice").value;
+         var persons = document.getElementById("persons").value;
+         var countCosts = ((mileage / 100.0) * litrePrice * km) / persons;
+
+         document.getElementById("answer").innerHTML =
+            "Polttoaine per henkilö on " + countCosts.toFixed(2) + " euroa";
+      }
+   </script>
+</body>
+
+</html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+   <meta charset="UTF-8" />
+   <title>Count salary</title>
+   <style>
+      label {
+         display: block;
+         width: 95px;
+         float: left;
+      }
+   </style>
+</head>
+
+<body>
+   <label>Bruttopalkka:</label>
+   <input type="text" id="grossIncome" size="4" />
+   <br><br>
+   <label>Veroprosentti:</label>
+   <input type="text" id="taxRate" size="4" />
+   <br><br>
+   <input type="button" value="Laske palkka" onclick="count()" />
+   <br><br>
+   <div id="answer"></div>
+
+   <script>
+      function count() {
+         var grossIncome = document.getElementById("grossIncome").value;
+         var taxRate = document.getElementById("taxRate").value;
+
+         var count = (grossIncome * taxRate) / 100.0;
+         var countTyel = grossIncome * 0.0635;
+         var countTv = grossIncome * 0.019;
+         var countNet = grossIncome - (grossIncome * taxRate) / 100.0 - grossIncome * 0.019 -
+            grossIncome * 0.0635;
+
+         document.getElementById("answer").innerHTML =
+            "Veron osuus " + count.toFixed(2) +
+            "<br>" + "Työeläkevakuutusmaksun osuus " + countTyel.toFixed(2) +
+            "<br>" + "Työttömyysvakuutuksen osuus " + countTv.toFixed(2) +
+            "<br>" + "Käteen jää " + countNet.toFixed(2);
+      }
+   </script>
+</body>
+
+</html>

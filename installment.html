@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+   <meta charset="UTF-8" />
+   <title>Installment</title>
+   <style>
+      label {
+         display: block;
+         width: 120px;
+         float: left;
+      }
+   </style>
+</head>
+
+<body>
+   <label>Vakuutusmaksu:</label>
+   <input type="text" id="payment" />
+   <br><br>
+   <label>Erien määrä:</label>
+   <input type="text" id="amount" />
+   <br><br>
+   <input type="button" value="Näytä erät" onclick="count()" />
+   <br><br>
+
+   <div id="answer"></div>
+   <script>
+      function count() {
+         var payment = document.getElementById("payment").value;
+         var amount = document.getElementById("amount").value;
+         var item = (payment / amount).toFixed(2);
+         var result = "";
+
+         for (var i = 1; i <= amount; i++) {
+            result = result + "<br>" + i + ". erä " + item + " euroa ";
+         }
+         document.getElementById("answer").innerHTML = result;
+      }
+   </script>
+</body>
+
+</html>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+   <meta charset="UTF-8" />
+   <title>Daily fine</title>
+   <style>
+      label {
+         display: block;
+         width: 80px;
+         float: left;
+      }
+   </style>
+</head>
+
+<body>
+   <form>
+      <label>Nettotulot:</label>
+      <input type="text" id="netEarnings" size="5" />
+      <input type="button" value="Laske päiväsakko" onclick="countDailyFine()" />
+   </form>
+   <br><br>
+   <div id="answer"></div>
+
+   <script>
+      function countDailyFine() {
+         var netEarnings = document.getElementById("netEarnings").value;
+         var dailyFine = (netEarnings - 255) / 60;
+
+         document.getElementById("answer").innerHTML =
+            "Päiväsakko on " + dailyFine.toFixed(2) + " €";
+      }
+   </script>
+</body>
+
+</html>

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+   <meta charset="UTF-8" />
+   <title>Check age</title>
+   <style></style>
+</head>
+
+<body onload="setFocus()">
+   <label>Ikä:</label>
+   <input type="text" id="age" />
+   <input type="button" value="Tarkista saako pelata" onclick="checkAge()" />
+   <br>
+   <div id="answer"></div>
+
+   <script>
+      function checkAge() {
+         var age = document.getElementById("age").value;
+
+         if (age == "") {
+            setFocus();
+            return;
+         }
+         if (age * 1 != age) {
+            alert("Anna numeraalinen arvo");
+            setFocus();
+            return;
+         }
+         var result = "";
+
+         if (age < 0) {
+            result = "Virheellinen ikä";
+            setFocus();
+         } else if (age < 18) {
+            result = "Alaikäinen ei voi pelata";
+         } else if (age > 130) {
+            result = "Ikä on ylittynyt";
+            setFocus();
+         } else if (age > 100) {
+            result = "Yli-ikäinen ei voi pelata";
+         } else {
+            result = "Peli voi alkaa";
+         }
+         document.getElementById("answer").innerHTML = result;
+      }
+      function setFocus() {
+         document.getElementById("age").value = "";
+         document.getElementById("age").focus();
+      }
+   </script>
+</body>
+
+</html>

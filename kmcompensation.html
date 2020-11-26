@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+   <meta charset="UTF-8" />
+   <title>KM Compensation</title>
+   <style>
+      label {
+         display: block;
+         width: 140px;
+         float: left;
+      }
+   </style>
+</head>
+
+<body>
+   <h3>Laske kilometrikorvaus</h3>
+   <label>Syötä kilometrit:</label>
+   <input type="text" id="km" size="6" />
+   <input type="button" value="Laske" onclick="count()" />
+   <br><br>
+   <p>Korvaus per km on 0,42 €</p>
+   <div id="answer"></div>
+
+   <script>
+      function count() {
+         var km = document.getElementById("km").value;
+         var mileage = 0.42;
+         var amount = km * mileage;
+
+         if (km * 1 != km) { //onko arvo ei-numeraalinen
+            return; //lopetetaan funktion suorittaminen
+         }
+         document.getElementById("answer").innerHTML =
+            "Maksetaan " + amount.toFixed(2) + " euroa";
+      }
+   </script>
+</body>
+
+</html>

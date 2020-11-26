@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+   <meta charset="UTF-8" />
+   <title>Sales commission</title>
+   <style></style>
+</head>
+
+<body onload="asetaFocus">
+   <label>Hinta</label>
+   <input type="text" id="price" />
+   <input type="button" value="Laske" onclick="count()" />
+   <br><br>
+
+   <div id="answer"></div>
+
+   <script>
+      function count() {
+         var price = document.getElementById("price").value;
+         var commission = (price * 3.44) / 100;
+
+         if (price == "") {
+            asetaFocus();
+            return;
+         }
+         if (price * 1 != price) {
+            alert("Anna numeraalinen arvo");
+            document.getElementById("price").value = "";
+            document.getElementById("price").focus();
+            return;
+         }
+         if (price < 0) {
+            result = "Negatiivinen hinta ei kelpaa";
+         }
+         var result = "";
+
+         if (commission < 2400) {
+            result = 2400;
+         } else {
+            result = commission;
+         }
+         document.getElementById("answer").innerHTML =
+            "Myyntipalkkio on " + result.toFixed(2) + " euroa";
+      }
+      function asetaFocus() {
+         document.getElementById("price").value;
+         document.getElementById("price").focus();
+      }
+   </script>
+</body>
+
+</html>

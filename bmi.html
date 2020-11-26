@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+   <meta charset="UTF-8" />
+   <title>BMI</title>
+   <style>
+      label {
+         display: block;
+         width: 70px;
+         float: left;
+      }
+   </style>
+</head>
+
+<body>
+   <label>Paino:</label>
+   <input type="text" id="weight" size="6" />
+   kg
+   <br><br>
+   <label>Pituus:</label>
+   <input type="text" id="height" size="6" />
+   cm
+   <br><br>
+   <input type="button" value="Laske" onclick="countIndex()" />
+   <br><br>
+   <div id="indexResult"></div>
+
+   <script>
+      function countIndex() {
+         var weight = document.getElementById("weight").value;
+         var height = document.getElementById("height").value;
+         var index = weight / (((height / 100) * height) / 100);
+
+         if (weight < 0 || height < 0) {
+            alert("Anna positiivinen arvo");
+            return;
+         }
+         var result = "";
+
+         if (index < 18.5) {
+            result = "Normaalia alhaisempi paino";
+         } else if (index < 25.0) {
+            result = "Normaali paino";
+         } else {
+            result = "Ylipaino";
+         }
+         document.getElementById("indexResult").innerHTML =
+            "Painoindeksi on " + index.toFixed(2) + "/ " + result;
+      }
+   </script>
+</body>
+
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+   <meta charset="UTF-8" />
+   <title>Count rent</title>
+   <style>
+      label {
+         display: block;
+         width: 110px;
+         float: left;
+      }
+   </style>
+</head>
+
+<body>
+   <label>Vuokra:</label>
+   <input type="text" id="rent" size="4" />
+   <br><br>
+   <label>Osallistujat:</label>
+   <input type="text" id="participants" size="4" />
+   <br><br>
+   <input type="button" value="Laske vuokra" onclick="countRent()" />
+   <br><br>
+   <div id="answer"></div>
+
+   <script>
+      function countRent() {
+         var rent = document.getElementById("rent").value;
+         var participants = document.getElementById("participants").value;
+         var share = rent / participants;
+
+         document.getElementById("answer").innerHTML =
+            "Vuokra per henkilö on " + share.toFixed(2) + " euroa";
+      }
+   </script>
+</body>
+
+</html>

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+   <meta charset="UTF-8" />
+   <title>Fine counter</title>
+   <style>
+      label {
+         display: block;
+         width: 120px;
+         float: left;
+      }
+   </style>
+</head>
+
+<body>
+   <label>Nopeus:</label>
+   <input type="text" id="speed" size="6" />
+   <br><br>
+   <label>Nopeusrajoitus:</label>
+   <input type="text" id="limit" size="6" />
+   <br><br>
+   <input type="button" value="Kerro sakko" onclick="count()" />
+   <br><br>
+   <div id="answer"></div>
+
+   <script>
+      function count() {
+         var speed = document.getElementById("speed").value;
+         var limit = document.getElementById("limit").value;
+         var subtraction = speed - limit;
+
+         if (subtraction < 0) {
+            alert("Nopeus alle rajoituksen");
+            return;
+         }
+         var result = "";
+         var dailyFine = "Selvitä henkilöt tulot. Menee päiväsakoille.";
+
+         if (limit < 60 || limit == 60) {
+            if (subtraction > 0 && subtraction < 15 || subtraction == 15) {
+               result = "Rikesakko on 170 €";
+            } else if (subtraction > 15 && subtraction < 20 || subtraction == 20) {
+               result = "Rikesakko on 200 €";
+            } else {
+               result = dailyFine;
+            }
+         } else {
+            if (subtraction > 0 && subtraction < 15 || subtraction == 15) {
+               result = "Rikesakko on 140 €";
+            } else if (subtraction > 15 && subtraction < 20 || subtraction == 20) {
+               result = "Rikesakko on 200 €";
+            } else {
+               result = dailyFine;
+            }
+         }
+         document.getElementById("answer").innerHTML = result;
+      }
+   </script>
+</body>
+
+</html>

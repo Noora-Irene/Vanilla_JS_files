@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+   <meta charset="UTF-8" />
+   <title>Credit left</title>
+   <style>
+      label {
+         display: block;
+         width: 100px;
+         float: left;
+      }
+   </style>
+</head>
+
+<body>
+   <label>Luoton määrä:</label>
+   <input type="text" id="credit" />
+   <br><br>
+   <label>Erien määrä:</label>
+   <input type="text" id="amount" />
+   <br><br>
+   <input type="button" value="Näytä erät" onclick="count()" />
+   <br><br>
+   <div id="answer"></div>
+
+   <script>
+      function count() {
+         var credit = document.getElementById("credit").value;
+         var amount = document.getElementById("amount").value;
+         var payment = (credit / amount).toFixed(2);
+         var answer = "";
+
+         for (var i = 1; i <= amount; i++) {
+            credit -= payment;
+            credit = credit.toFixed(2);
+            if (i != amount) {
+               answer += "Maksettava " + payment + " euroa, jäljellä " +
+                  credit + " euroa. <br> ";
+            } else {
+               // viimeinen erä
+               payment = (payment * 1 + credit * 1).toFixed(2);
+               credit = 0;
+               answer +=
+                  "Maksettava " + payment + " euroa, jäljellä " +
+                  credit + " euroa. <br> ";
+            }
+         }
+         document.getElementById("answer").innerHTML = answer;
+      }
+   </script>
+</body>
+
+</html>

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+   <meta charset="UTF-8" />
+   <title>toUpperCase</title>
+   <style></style>
+</head>
+
+<body>
+   <label>Nimi:</label>
+   <input type="text" id="name" />
+   <br><br>
+   <input type="button" value="KIRJOITA ISOIN KIRJAIMIN" onclick="changeText()" />
+   <br><br>
+   <span id="result"></span>
+   <script>
+      function changeText() {
+         var name = document.getElementById("name").value;
+         document.getElementById("result").innerHTML = name.toUpperCase();
+      }
+   </script>
+</body>
+
+</html>

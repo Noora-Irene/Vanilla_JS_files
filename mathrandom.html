@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+   <meta charset="UTF-8" />
+   <title>Math random</title>
+   <style></style>
+</head>
+
+<body>
+   <script type="text/javascript">
+      var text = "";
+
+      for (var i = 1; i <= 50; i++) {
+         number = Math.round(Math.random() * 1000);
+         text = text + number + "<br>";
+         if (i % 10 == 0) {
+            text = text + "<br>";
+
+            document.write(text);
+         }
+      }
+   </script>
+</body>
+
+</html>

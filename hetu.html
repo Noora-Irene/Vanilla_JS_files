@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+   <meta charset="UTF-8" />
+   <title>Check HETU</title>
+   <style>
+      label {
+         display: block;
+         width: 80px;
+         float: left;
+      }
+   </style>
+</head>
+
+<body>
+   <label>HETU</label>
+   <input type="text" id="hetu" />
+   <br><br>
+   <input type="button" value="Tutki" onclick="check()" />
+   <br><br>
+   <div id="answer"></div>
+   <script>
+      function check() {
+         var result = "";
+         var hetu = document.getElementById("hetu").value;
+
+         result += "Sukupuoli on " + sexCheck(hetu);
+         result += "<br>Syntymäpäivä on " + birthday(hetu);
+         document.getElementById("answer").innerHTML = result;
+      }
+      function sexCheck(id) {
+         var sex = "";
+         var i = id.substr(9, 1);
+
+         if (!i * 1) {
+            sex = ", ei voida tutkia.";
+         } else if (i % 2 == 0) {
+            sex = "nainen.";
+         } else {
+            sex = "mies.";
+         }
+         return sex;
+      }
+      function birthday(id) {
+         var d = id.substr(0, 2);
+         var m = id.substr(2, 2);
+         var y = id.substr(4, 2);
+         var tag = id.substr(6, 1).toUpperCase();
+
+         if (tag == "A") {
+            y = "20" + y;
+         } else if (tag == "-") {
+            y = "19" + y;
+         } else if (tag == "+") {
+            y = "18" + y;
+         }
+         return d + "." + m + "." + y;
+      }
+   </script>
+</body>
+
+</html>

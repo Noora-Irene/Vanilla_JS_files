@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+   <meta charset="UTF-8" />
+   <title>GET jobs Vantaa</title>
+   <style></style>
+</head>
+
+<body>
+   <div id="result"></div>
+
+   <script>
+      function getJobs() {
+         var xmlhttp = new XMLHttpRequest();
+         var json;
+
+         xmlhttp.onreadystatechange = function () {
+            if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+               json = xmlhttp.responseText;
+               listJobs(json);
+            }
+         };
+         xmlhttp.open(
+            "GET",
+            "http://gis.vantaa.fi/rest/tyopaikat/v1/Opetusala",
+            true
+         );
+         xmlhttp.send();
+      }
+      function listJobs(json) {
+         var jobs = JSON.parse(json);
+         var text = "";
+
+         for (var i = 0; i < jobs.length; i++) {
+            text += "<b>" + jobs[i].tyotehtava + "</b><br>";
+            text += "Osoite: " + jobs[i].osoite + "<br>";
+            text += "Haku päättyy: " + jobs[i].haku_paattyy_pvm + "<br><br>";
+         }
+         document.getElementById("result").innerHTML = text;
+      }
+      getJobs();
+   </script>
+</body>
+
+</html>

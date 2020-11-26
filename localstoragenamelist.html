@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+   <meta charset="UTF-8" />
+   <title>Name list LocalStorage</title>
+   <style>
+      label {
+         display: block;
+         width: 80px;
+         float: left;
+      }
+
+      table {
+         border: 4px double rgb(16, 4, 128);
+         padding: 10px;
+      }
+
+      span {
+         color: rgb(255, 0, 0);
+         cursor: pointer;
+      }
+   </style>
+</head>
+
+<body>
+   <label>Nimi:</label>
+   <input type="text" id="name" />
+   <br><br>
+   <label>&nbsp;</label>
+   <input type="button" value="Lisää nimi listaan" onclick="addName()" />
+   <br><br>
+   <label>&nbsp;</label>
+   <table>
+      <thead>
+         <tr>
+            <th width="150">Nimi</th>
+            <th>&nbsp;</th>
+         </tr>
+      </thead>
+      <tbody id="list"></tbody>
+   </table>
+   <script>
+      document.getElementById("name").focus(); // kursorin palautus haluttuun paikkaan
+      makeList();
+
+      function addName() {
+         var name = document.getElementById("name").value;
+         var list = localStorage.getItem("list");
+         name = name.replace("$", ""); //Estetään $-separaattorin käyttäminen nimessä
+
+         if (name == "") {
+            return;
+         }
+         document.getElementById("name").value = "";
+
+         if (list == null) {
+            list = "";
+         }
+         localStorage.setItem("list", list + name + "$");
+         makeList();
+         document.getElementById("name").focus();
+      }
+      function makeList() {
+         var list = localStorage.getItem("list").split("$");
+         var listStr = "";
+
+         for (var i = 0; i < list.length - 1; i++) {
+            listStr += "<tr>";
+            listStr += "<td>";
+            listStr += list[i];
+            listStr += "</td>";
+            listStr += "<td>";
+            listStr +=
+               "<span onclick='remove(" +
+               i +
+               ")'><acronym title='Poista'>X</acronym></span>"; // toiminnon nimi näkyy käyttäjälle
+            listStr += "</td>";
+            listStr += "</tr>";
+         }
+         document.getElementById("list").innerHTML = listStr;
+      }
+      function remove(index) {
+         var list = localStorage.getItem("list").split("$");
+         var listStr = "";
+
+         for (var i = 0; i < list.length - 1; i++) {
+            if (i != index) {
+               // jätetään kirjoittamatta poistettavan indeksin tiedot uuteen listaan
+               listStr += list[i] + "$";
+            }
+         }
+         localStorage.setItem("list", listStr);
+         makeList();
+      }
+   </script>
+</body>
+
+</html>
