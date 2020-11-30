@@ -1,0 +1,39 @@
+<html>
+
+<head>
+   <style>
+      body {
+         background-color: rgb(0, 100, 0);
+      }
+
+      #picture {
+         position: absolute;
+         left: 300px;
+         top: 150px;
+         height: 500px;
+         border-radius: 200px;
+      }
+   </style>
+</head>
+
+<body>
+   <img src="your picture" id="picture"><br><br>
+   <script>
+      var x = 0
+      var change = 10;
+      function execute() {
+         document.getElementById("picture").style.left = x;
+         if (x + 200 > window.innerWidth && change > 0) {
+            change = change * -1;
+         }
+         if (x <= 0 && change < 0) {
+            change = change * -1;
+         }
+         x += change; //x = x + 10;
+         setTimeout("execute()", 20); //mitä kutsutaan, viive millisekunteina
+      }
+      execute();
+   </script>
+</body>
+
+</html>
